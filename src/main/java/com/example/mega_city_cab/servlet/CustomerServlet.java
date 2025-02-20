@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -99,12 +100,17 @@ public class CustomerServlet extends HttpServlet {
         customer.setPassword(password);
 
         customerService.updateCustomer(customer);
-        response.sendRedirect("customer.jsp");
+        response.sendRedirect("managecustomer.jsp");
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         int customerID = Integer.parseInt(request.getParameter("customerID"));
         customerService.deleteCustomer(customerID);
-        response.sendRedirect("customer.jsp");
+        response.sendRedirect("managecustomer.jsp");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 }
