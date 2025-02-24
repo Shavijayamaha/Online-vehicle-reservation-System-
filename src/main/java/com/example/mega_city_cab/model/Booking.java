@@ -4,13 +4,16 @@ import java.util.Date;
 
 public class Booking {
     private int bookingID;
-    private Customer customer;
-    private Driver driver;
-    private Car car;
+    private int customerID;
+    private int driverID;
+    private int carID;
     private String destination;
     private String paymentMethod;
     private double distanceKm;
     private double totalPrice;
+    private double basePrice;
+    private double tax;
+    private double discount;
     private Date bookingDate;
 
     // Getters and Setters
@@ -22,28 +25,28 @@ public class Booking {
         this.bookingID = bookingID;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerID() {
+        return customerID;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
     }
 
-    public Driver getDriver() {
-        return driver;
+    public int getDriverID() {
+        return driverID;
     }
 
-    public void setDriver(Driver driver) {
-        this.driver = driver;
+    public void setDriverID(int driverID) {
+        this.driverID = driverID;
     }
 
-    public Car getCar() {
-        return car;
+    public int getCarID() {
+        return carID;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarID(int carID) {
+        this.carID = carID;
     }
 
     public String getDestination() {
@@ -76,6 +79,30 @@ public class Booking {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public double getBasePrice() {
+        return basePrice;
+    }
+
+    public void setBasePrice(double basePrice) {
+        this.basePrice = basePrice;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 
     public Date getBookingDate() {

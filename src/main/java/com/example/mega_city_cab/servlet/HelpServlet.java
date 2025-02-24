@@ -8,6 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -23,10 +24,15 @@ public class HelpServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+
         try {
-            List<Help> guidelines = helpService.getAllGuidelines();
-            request.setAttribute("guidelines", guidelines);
-            request.getRequestDispatcher("help.jsp").forward(request, response);
+            if ("manage".equals(action)) {
+                showManagePage(request, response);
+            }
         } catch (SQLException e) {
             throw new ServletException(e);
         }
@@ -35,25 +41,31 @@ public class HelpServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
 
         try {
-            switch (action) {
-                case "add":
-                    addGuideline(request, response);
-                    break;
-                case "update":
-                    updateGuideline(request, response);
-                    break;
-                case "delete":
-                    deleteGuideline(request, response);
-                    break;
-                default:
-                    response.sendRedirect("helpmanage.jsp");
-                    break;
+            if ("add".equals(action)) {
+                addGuideline(request, response);
+            } else if ("update".equals(action)) {
+                updateGuideline(request, response);
+            } else if ("delete".equals(action)) {
+                deleteGuideline(request, response);
+            } else {
+                response.sendRedirect("help");
             }
         } catch (SQLException e) {
             throw new ServletException(e);
         }
+    }
+
+
+
+    private void showManagePage(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
+        List<Help> guidelines = helpService.getAllGuidelines();
+        request.setAttribute("guidelines", guidelines);
+        request.getRequestDispatcher("helpmanage.jsp").forward(request, response);
     }
 
     private void addGuideline(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -63,7 +75,7 @@ public class HelpServlet extends HttpServlet {
         help.setGuideline(guideline);
 
         helpService.addGuideline(help);
-        response.sendRedirect("helpmanage.jsp");
+        response.sendRedirect("help?action=manage");
     }
 
     private void updateGuideline(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
@@ -75,12 +87,12 @@ public class HelpServlet extends HttpServlet {
         help.setGuideline(guideline);
 
         helpService.updateGuideline(help);
-        response.sendRedirect("helpmanage.jsp");
+        response.sendRedirect("help?action=manage");
     }
 
     private void deleteGuideline(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         int helpID = Integer.parseInt(request.getParameter("helpID"));
         helpService.deleteGuideline(helpID);
-        response.sendRedirect("helpmanage.jsp");
+        response.sendRedirect("help?action=manage");
     }
 }

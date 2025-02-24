@@ -116,4 +116,48 @@ public class CustomerDAO {
             stmt.executeUpdate();
         }
     }
+
+    public Customer getCustomerByName(String name) throws SQLException {
+        String query = "SELECT * FROM customer WHERE name = ?";
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Customer customer = new Customer();
+                customer.setCustomerID(rs.getInt("customer_id"));
+                customer.setName(rs.getString("name"));
+                customer.setAddress(rs.getString("address"));
+                customer.setNic(rs.getString("nic"));
+                customer.setPhone(rs.getString("phone"));
+                customer.setEmail(rs.getString("email"));
+                customer.setPassword(rs.getString("password"));
+                return customer;
+            }
+            return null;
+        }
+    }
+
+    public Customer getCustomerByEmail(String email) throws SQLException {
+        String query = "SELECT * FROM customer WHERE email = ?";
+        try (Connection connection = DBConnection.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Customer customer = new Customer();
+                customer.setCustomerID(rs.getInt("customer_id"));
+                customer.setName(rs.getString("name"));
+                customer.setAddress(rs.getString("address"));
+                customer.setNic(rs.getString("nic"));
+                customer.setPhone(rs.getString("phone"));
+                customer.setEmail(rs.getString("email"));
+                customer.setPassword(rs.getString("password"));
+                return customer;
+            }
+            return null;
+        }
+    }
 }

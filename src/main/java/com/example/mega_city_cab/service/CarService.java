@@ -32,4 +32,8 @@ public class CarService {
     public void deleteCar(int carID) throws SQLException {
         carDAO.deleteCar(carID);
     }
+
+    public Car getCarByModel(String model) throws SQLException {
+        return carDAO.getCarByModel(model);
+    }
 }

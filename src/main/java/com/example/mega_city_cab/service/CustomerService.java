@@ -7,10 +7,17 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class CustomerService {
-    private CustomerDAO customerDAO = new CustomerDAO();
+    private CustomerDAO customerDAO;
+    private OtpService otpService;
+
+    public CustomerService() {
+        this.customerDAO = new CustomerDAO();
+        this.otpService = new OtpService();
+    }
 
     public void addCustomer(Customer customer) throws SQLException {
         customerDAO.addCustomer(customer);
+        otpService.generateOtp(customer.getEmail()); // Generate OTP when customer registers
     }
 
     public Customer getCustomer(int customerID) throws SQLException {
@@ -21,15 +28,32 @@ public class CustomerService {
         return customerDAO.getAllCustomers();
     }
 
-    public Customer authenticateCustomer(String email, String password) throws SQLException {
-        return customerDAO.getCustomerByEmailAndPassword(email, password);
-    }
-
     public void updateCustomer(Customer customer) throws SQLException {
         customerDAO.updateCustomer(customer);
     }
 
     public void deleteCustomer(int customerID) throws SQLException {
         customerDAO.deleteCustomer(customerID);
+    }
+
+    public Customer authenticateCustomer(String email, String password) throws SQLException {
+        Customer customer = customerDAO.getCustomerByEmailAndPassword(email, password);
+        if (customer != null) {
+            otpService.generateOtp(email); // Generate OTP when customer logs in
+        }
+        return customer;
+    }
+
+
+    public Customer getCustomerByEmail(String email) throws SQLException {
+        return customerDAO.getCustomerByEmail(email);
+    }
+
+    public boolean validateOtp(String email, String otp) {
+        return otpService.validateOtp(email, otp);
+    }
+
+    public void clearOtp(String email) {
+        otpService.clearOtp(email);
     }
 }
