@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Bill Details</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="css/billdetails.css">
 </head>
 <body>
 <h1>Booking Bill Details</h1>

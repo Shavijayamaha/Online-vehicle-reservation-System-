@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Manage Cars</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="css/managecar.css">
 </head>
 <body>
 <h1>Manage Cars</h1>

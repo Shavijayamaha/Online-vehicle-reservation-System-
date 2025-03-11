@@ -3,6 +3,7 @@
 <html>
 <head>
   <title>Mega City Cab - Home</title>
+  <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
 <h1>Welcome to Mega City Cab</h1>

@@ -17,7 +17,7 @@
 <head>
   <meta charset="UTF-8">
   <title>View Bookings</title>
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="stylesheet" type="text/css" href="css/viewbookings.css">
 </head>
 <body>
 <h1>View Bookings</h1>

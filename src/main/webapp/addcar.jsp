@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Add Car</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="css/addcar.css">
 </head>
 <body>
 <h1>Add New Car</h1>

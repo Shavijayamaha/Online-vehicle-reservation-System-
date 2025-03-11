@@ -11,6 +11,7 @@
 <html>
 <head>
     <title>Customer Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="css/customer.css">
 </head>
 <body>
 <h1>Hi <%= customer.getName() %></h1>

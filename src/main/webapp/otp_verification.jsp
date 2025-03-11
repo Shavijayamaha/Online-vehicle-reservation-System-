@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>OTP Verification</title>
+    <link rel="stylesheet" type="text/css" href="css/otp.css">
 </head>
 <body>
 <h1>OTP Verification</h1>

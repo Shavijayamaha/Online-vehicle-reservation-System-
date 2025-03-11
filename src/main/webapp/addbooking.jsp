@@ -9,10 +9,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Booking</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="css/addbooking.css">
 </head>
 <body>
 <h1>Make a New Booking</h1>
+<a href="customer.jsp" class="button">Back to Dashboard</a>
 <%
     CarService carService = new CarService();
     DriverService driverService = new DriverService();
@@ -69,7 +70,5 @@
     </div>
     <button type="submit">Calculate Bill</button>
 </form>
-<br>
-<a href="customer.jsp">Back to Dashboard</a>
 </body>
 </html>
