@@ -32,4 +32,7 @@ public class HelpService {
     public Help getHelp(int helpID) throws SQLException {
         return helpDAO.getHelp(helpID);
     }
+    public void setHelpDAO(HelpDAO helpDAO) {
+        this.helpDAO = helpDAO;
+    }
 }

@@ -16,6 +16,9 @@ public class BookingService {
     public void addBooking(Booking booking) throws SQLException {
         bookingDAO.addBooking(booking);
     }
+    public void setBookingDAO(BookingDAO bookingDAO) {
+        this.bookingDAO = bookingDAO;
+    }
 
     public Booking getBooking(int bookingID) throws SQLException {
         return bookingDAO.getBooking(bookingID);

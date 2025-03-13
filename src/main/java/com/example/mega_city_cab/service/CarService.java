@@ -16,6 +16,9 @@ public class CarService {
     public void addCar(Car car) throws SQLException {
         carDAO.addCar(car);
     }
+    public void setCarDAO(CarDAO carDAO) {
+        this.carDAO = carDAO;
+    }
 
     public Car getCar(int carID) throws SQLException {
         return carDAO.getCar(carID);

@@ -11,6 +11,9 @@ public class AdminService {
     public AdminService() {
         this.adminDAO = new AdminDAO();
     }
+    public void setAdminDAO(AdminDAO adminDAO) {
+        this.adminDAO = adminDAO;
+    }
 
     public Admin authenticateAdmin(String username, String password) throws SQLException {
         return adminDAO.getAdminByUsernameAndPassword(username, password);

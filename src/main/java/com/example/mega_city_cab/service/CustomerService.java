@@ -19,7 +19,13 @@ public class CustomerService {
         customerDAO.addCustomer(customer);
         otpService.generateOtp(customer.getEmail()); // Generate OTP when customer registers
     }
+    public void setCustomerDAO(CustomerDAO customerDAO) {
+        this.customerDAO = customerDAO;
+    }
 
+    public void setOtpService(OtpService otpService) {
+        this.otpService = otpService;
+    }
     public Customer getCustomer(int customerID) throws SQLException {
         return customerDAO.getCustomer(customerID);
     }
